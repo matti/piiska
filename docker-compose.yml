@@ -1,0 +1,19 @@
+version: "3.6"
+
+services:
+  master:
+    image: mattipaksula/piiska:v1
+    build: locust
+    volumes:
+      - ./locust/app:/app
+    ports:
+      - 8080:8080
+  slave:
+    image: mattipaksula/piiska:v1
+    environment:
+      - PIISKA_MODE=slave
+      - PIISKA_CLIENT=normal
+    volumes:
+      - ./locust/app:/app
+  target:
+    image: nginx
