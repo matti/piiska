@@ -17,3 +17,5 @@ services:
       - ./locust/app:/app
   target:
     image: nginx
+  redis:
+    image: redis:alpine
