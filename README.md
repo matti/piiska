@@ -1,3 +1,10 @@
 # piiska
 
-    docker-compose up --scale slave=3
+## install
+
+    ln -s $(pwd)/bin/piiska /usr/local/bin
+
+## enjoy
+
+    piiska
+    piiska update
