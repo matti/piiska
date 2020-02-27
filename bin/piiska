@@ -37,6 +37,14 @@ case $slaves in
   ;;
 esac
 
+while true; do
+  if docker-compose up -d --no-build --force-recreate --scale slave=$slaves redis master slave; then
+    break
+  else
+    docker-compose pull master
+  fi
+done
+
 (
   while true; do
     set +e
@@ -50,7 +58,4 @@ esac
   open http://localhost:8080
 ) &
 
-for try in 1 2; do
-  docker-compose up --no-build --force-recreate --scale slaves=$slaves || true
-  docker-compose pull master
-done
+docker-compose up delta

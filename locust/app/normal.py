@@ -1,5 +1,5 @@
 import os
-from pprint import pprint
+import datetime
 
 from locust import HttpLocust, TaskSet, between
 from bs4 import BeautifulSoup
@@ -18,10 +18,15 @@ def get(l):
 
         path = random_path.decode('utf-8')
         break
-        # if path.startswith('/'):
-        #     break
+
+    started_at = datetime.datetime.now()
 
     with l.client.get(path, catch_response=True) as response:
+        delta =  datetime.datetime.now() - started_at
+        delta_str = str(delta).split(".")[0].split(":")[2]
+        delta_str = delta_str + "." + str(delta).split(".")[1][:-5]
+        r.set('delta', delta_str)
+
         if response.headers.get('content-type', None) == None:
             return
 

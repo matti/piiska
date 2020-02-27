@@ -15,7 +15,11 @@ services:
       - PIISKA_CLIENT=normal
     volumes:
       - ./locust/app:/app
-  target:
-    image: nginx
+  delta:
+    image: redis:alpine
+    volumes:
+      - ./delta/app:/app
+    entrypoint:
+      - /app/entrypoint.sh
   redis:
     image: redis:alpine
