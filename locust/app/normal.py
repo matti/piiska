@@ -75,6 +75,10 @@ def get(l):
                     continue
                 if link.startswith("//"):
                     continue
+                if link.find("()") > 0:
+                    continue
+                if link.find(";base64,") > 0:
+                    continue
 
                 parts = urlparse.urlsplit(link)
                 new_path = parts.path
@@ -92,7 +96,6 @@ def get(l):
                     continue
                 else:
                     if not new_path.startswith("/"):
-                        print(new_path + " at " + path)
                         if base_path:
                             new_path = base_path + new_path
                         else:
