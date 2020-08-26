@@ -33,6 +33,6 @@ case "$PIISKA_MODE" in
     exec locust -f "$PIISKA_CLIENT.py" --master --step-load -P 8080
   ;;
   slave)
-    exec locust -f "$PIISKA_CLIENT.py" --slave --master-host=master
+    exec locust -f "$PIISKA_CLIENT.py" --worker --master-host=master
   ;;
 esac

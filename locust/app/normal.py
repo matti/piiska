@@ -1,7 +1,7 @@
 import os
 import datetime
 
-from locust import HttpLocust, TaskSet, between
+from locust import HttpUser, TaskSet, between
 from bs4 import BeautifulSoup
 import urllib.parse as urlparse
 
@@ -115,6 +115,6 @@ class UserBehavior(TaskSet):
         super().__init__(parent)
         self.hostname = urlparse.urlsplit(self.locust.host).hostname
 
-class WebsiteUser(HttpLocust):
+class WebsiteUser(HttpUser):
     task_set = UserBehavior
     wait_time = between(0.925, 0.925)
