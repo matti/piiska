@@ -1,8 +1,7 @@
-version: "3.6"
+version: "3"
 
 services:
-  master:
-    image: mattipaksula/piiska:v2
+  piiska:
     build: locust
     volumes:
       - ./locust/app:/app
