@@ -2,6 +2,7 @@ version: "3"
 
 services:
   piiska:
+    image: mattipaksula/piiska:v2
     build: locust
     volumes:
       - ./locust/app:/app
