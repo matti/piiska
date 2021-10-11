@@ -2,24 +2,9 @@ version: "3.6"
 
 services:
   master:
-    image: mattipaksula/piiska:v1
+    image: mattipaksula/piiska:v2
     build: locust
     volumes:
       - ./locust/app:/app
     ports:
       - 8080:8080
-  slave:
-    image: mattipaksula/piiska:v1
-    environment:
-      - PIISKA_MODE=slave
-      - PIISKA_CLIENT=normal
-    volumes:
-      - ./locust/app:/app
-  delta:
-    image: redis:alpine
-    volumes:
-      - ./delta/app:/app
-    entrypoint:
-      - /app/entrypoint.sh
-  redis:
-    image: redis:alpine
